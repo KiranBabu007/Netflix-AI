@@ -1,12 +1,11 @@
 import React from 'react'
+import logo from '../assets/Netflix_Logo_RGB.png'
 
 const Header = () => {
   return (
-    <div>
-      <div>
-        <img src="https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2023.ico" alt="logo" />
-      </div>
-    </div>
+      <div className='absolute px-8 pr-16 py-2  bg-gradient-to-b bg-transparent from-black w-full z-10'>
+        <img className='w-48' src={logo} alt="logo" />
+  </div>
   )
 }
 

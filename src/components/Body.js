@@ -1,6 +1,7 @@
 import React from 'react'
 import {
     createBrowserRouter,
+    RouterProvider,
   } from "react-router-dom";
 
 import Login from './Login'
@@ -22,7 +23,7 @@ const Body = () => {
 
   return (
     <div>
-      
+      <RouterProvider router={approuter}/>
     </div>
   )
 }
