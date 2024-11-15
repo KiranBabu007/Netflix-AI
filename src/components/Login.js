@@ -23,21 +23,26 @@ const Login = () => {
         {!SignedIn && <input
           type="text"
           placeholder="Full Name"
-          className="p-2 m-2 bg-transparent bg-opacity-70 bg-slate-800"
+          className="p-2 m-2  bg-opacity-50 bg-slate-800"
         />}
         <input
           type="email"
           placeholder="Email address"
-          className="p-2 m-2 bg-transparent bg-opacity-70 bg-slate-800"
+          className="p-2 m-2  bg-opacity-50 bg-slate-800"
         />
         <input
           type="password"
           placeholder="Password"
-          className="p-2 m-2  bg-transparent bg-opacity-70 bg-slate-800"
+          className="p-2 m-2   bg-opacity-50 bg-slate-800"
         />
         <button type="button" className="p-2 m-4 rounded  hover:bg-[#e02424] bg-[#f20202]">
           {SignedIn ? "Sign In" : "Sign Up"}
         </button>
+          <div>
+            <input type="checkbox" name="remember" id="" />
+        <label htmlFor="remember">{' '}Remember Me</label> 
+          </div>
+        
         {SignedIn ? (
           <p>
             New to Netflix?{" "}
