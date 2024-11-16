@@ -1,13 +1,17 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+const apiKey = process.env.FIREBASE_API_KEY;
+
 const firebaseConfig = {
-  apiKey: "AIzaSyCQqG_FVdlKeO9jhuzqrbjFYZNcjIIp42M",
+  apiKey: FIREBASE_API_KEY,
   authDomain: "netflix-ai-5529e.firebaseapp.com",
   projectId: "netflix-ai-5529e",
   storageBucket: "netflix-ai-5529e.firebasestorage.app",
