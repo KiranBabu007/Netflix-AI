@@ -51,7 +51,7 @@ const Login = () => {
           className="p-2 m-2   bg-opacity-50 bg-slate-800"
         />
         {errormsg && <p className="text-red-500">{errormsg}</p>}
-        <button onClick={handleSubmit}  type="button" className="p-2 m-4 rounded  hover:bg-[#e02424] bg-[#f20202]">
+        <button onClick={handleSubmit}  type="button" className="p-2 m-4 rounded hover:bg-[#e02424] bg-[#f20202]">
           {SignedIn ? "Sign In" : "Sign Up"}
         </button>
           <div>
