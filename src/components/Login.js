@@ -1,9 +1,11 @@
 import React, { useState,useRef } from "react";
 import Header from "./Header";
 import loginbackground from "../assets/loginbackground.png";
+import {validate} from "../utils/validate";
 
 const Login = () => {
   const [SignedIn, setSignedIn] = useState(true);
+  const [errormsg, setErrormsg] = useState("");
 
   const ToggleSignIn = () => {
     setSignedIn(!SignedIn);
@@ -13,10 +15,10 @@ const Login = () => {
   const email=useRef(null)
   const password=useRef(null)
 
-  const handleSubmit=(name,email,password)=>{
-      
+  const handleSubmit=()=>{
+    const msg = validate(email.current.value,password.current.value,name.current.value);
+    setErrormsg(msg)
   }
-
 
   return (
     <div>
