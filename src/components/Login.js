@@ -2,6 +2,8 @@ import React, { useState,useRef } from "react";
 import Header from "./Header";
 import loginbackground from "../assets/loginbackground.png";
 import {validate} from "../utils/validate";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../utils/firebase";
 
 const Login = () => {
   const [SignedIn, setSignedIn] = useState(true);
@@ -18,13 +20,42 @@ const Login = () => {
   const handleSubmit=()=>{
     const msg = validate(email.current.value,password.current.value);
     setErrormsg(msg);
+    if (msg) return;
+
+    if(!SignedIn){
+      createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+  });
+    }
+    else{
+      const auth = getAuth();
+signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+  });
+    }
+
   }
 
   return (
     <div>
       <Header />
       <div className="absolute">
-        <img src={loginbackground} alt="logo" />
+        <img className=""h-screen src={loginbackground} alt="logo" />
       </div>
 
       <form onSubmit={(e)=> e.preventDefault()}
@@ -42,13 +73,13 @@ const Login = () => {
           type="email"
           ref={email}
           placeholder="Email address"
-          className="p-2 m-2  bg-opacity-50 bg-slate-800"
+          className="p-2 m-2 bg-opacity-50 bg-slate-800"
         />
         <input
           type="password"
           ref={password}
           placeholder="Password"
-          className="p-2 m-2   bg-opacity-50 bg-slate-800"
+          className="p-2 m-2 bg-opacity-50 bg-slate-800"
         />
         {errormsg && <p className="text-red-500">{errormsg}</p>}
         <button onClick={handleSubmit}  type="button" className="p-2 m-4 rounded hover:bg-[#e02424] bg-[#f20202]">
