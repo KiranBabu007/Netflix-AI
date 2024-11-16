@@ -11,13 +11,13 @@ const Login = () => {
     setSignedIn(!SignedIn);
   };
 
-  const name=useRef(null)
-  const email=useRef(null)
-  const password=useRef(null)
+  const name=useRef()
+  const email=useRef()
+  const password=useRef()
 
   const handleSubmit=()=>{
     const msg = validate(email.current.value,password.current.value);
-    setErrormsg(msg)
+    setErrormsg(msg);
   }
 
   return (
@@ -27,7 +27,7 @@ const Login = () => {
         <img src={loginbackground} alt="logo" />
       </div>
 
-      <form onSubmit={(e)=> e.preventDefault( )}
+      <form onSubmit={(e)=> e.preventDefault()}
       className="absolute gap-4 text-white p-12 bg-black w-4/12 my-28 flex flex-wrap flex-col bg-opacity-80 right-0 left-0 mx-auto">
         <h1 className="text-4xl font-bold py-4">
           {SignedIn ? "Sign In" : "Sign Up"}
@@ -50,7 +50,8 @@ const Login = () => {
           placeholder="Password"
           className="p-2 m-2   bg-opacity-50 bg-slate-800"
         />
-        <button onClick={handleSubmit()} type="button" className="p-2 m-4 rounded  hover:bg-[#e02424] bg-[#f20202]">
+        {errormsg && <p className="text-red-500">{errormsg}</p>}
+        <button onClick={handleSubmit}  type="button" className="p-2 m-4 rounded  hover:bg-[#e02424] bg-[#f20202]">
           {SignedIn ? "Sign In" : "Sign Up"}
         </button>
           <div>
