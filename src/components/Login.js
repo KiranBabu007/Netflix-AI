@@ -31,7 +31,7 @@ const Login = () => {
   })
   .catch((error) => {
     const errorCode = error.code;
-    const errorMessage = error.message;
+    setErrormsg('Invalid Credentials or User already exists')
     // ..
   });
     }
@@ -39,13 +39,16 @@ const Login = () => {
       const auth = getAuth();
 signInWithEmailAndPassword(auth, email.current.value, password.current.value)
   .then((userCredential) => {
-    // Signed in 
+    
     const user = userCredential.user;
-    // ...
+    
+
   })
   .catch((error) => {
+
     const errorCode = error.code;
-    const errorMessage = error.message;
+    setErrormsg('Invalid Credentials ')
+    
   });
     }
 
