@@ -2,8 +2,9 @@ import React, { useState,useRef } from "react";
 import Header from "./Header";
 import loginbackground from "../assets/loginbackground.png";
 import {validate} from "../utils/validate";
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword,sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../utils/firebase";
+
 
 const Login = () => {
   const [SignedIn, setSignedIn] = useState(true);
@@ -16,6 +17,21 @@ const Login = () => {
   const name=useRef()
   const email=useRef()
   const password=useRef()
+
+  const resetPassword=()=>{
+    const auth = getAuth();
+    sendPasswordResetEmail(auth, email.current.value)
+      .then(() => {
+        // Password reset email sent!
+        alert('Password reset email sent!')
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert('Error , Please make sure you have entered the correct email in the email field')
+      });
+    
+  }
 
   const handleSubmit=()=>{
     const msg = validate(email.current.value,password.current.value);
@@ -116,6 +132,7 @@ signInWithEmailAndPassword(auth, email.current.value, password.current.value)
             Now
           </p>
         )}
+        {SignedIn && <p className="text-blue-500 cursor-pointer" onClick={resetPassword}>Forgot Password?</p>}
       </form>
     </div>
   );
