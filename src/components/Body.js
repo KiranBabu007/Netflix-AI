@@ -7,9 +7,7 @@ import {
 import Login from './Login'
 import Browse from './Browse'
 import { useDispatch } from 'react-redux';
-import { onAuthStateChanged } from 'firebase/auth';
-import { addUser, removeUser } from '../utils/userSlice';
-import { auth } from '../utils/firebase';
+
 
 
 const Body = () => {
@@ -27,17 +25,7 @@ const Body = () => {
         }
     ])
 
-    useEffect(() => {
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          
-          const {uid,email,photoURL,displayName} = user;
-          dispatch(addUser({uid:uid,email:email,photoURL:photoURL,displayName:displayName}))
-        } else {
-          dispatch(removeUser())
-        }
-      })
-    }, [])
+    
 
   return (
     <div>
