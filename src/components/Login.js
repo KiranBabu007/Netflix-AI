@@ -5,6 +5,8 @@ import {validate} from "../utils/validate";
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword,sendPasswordResetEmail, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 
 const Login = () => {
@@ -19,6 +21,7 @@ const Login = () => {
   const email=useRef()
   const password=useRef()
   const navigate=useNavigate()
+  const dispatch=useDispatch()
 
   const resetPassword=()=>{
     const auth = getAuth();
@@ -49,12 +52,17 @@ const Login = () => {
     updateProfile(auth.currentUser, {
       displayName: name.current.value, photoURL: "https://lh3.googleusercontent.com/-nNoeKFKlEGE/AAAAAAAAAAI/AAAAAAAAAAA/ALKGfknFf6fM8scsyD6d4HXynUT50ZQuOA/photo.jpg?sz=46"
     }).then(() => {
-      
+      const uid = user.uid;
+      const email = user.email;
+      const photoURL = user.photoURL;
+      const displayName = user.displayName;
+      dispatch(addUser({uid:uid,email:email,photoURL:photoURL,displayName:displayName}))
+      navigate('/browse')
     }).catch((error) => {
       
     });
-    navigate('/browse')
-    // ...
+    
+
   })
   .catch((error) => {
     const errorCode = error.code;
