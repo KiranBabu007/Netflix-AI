@@ -2,8 +2,9 @@ import React, { useState,useRef } from "react";
 import Header from "./Header";
 import loginbackground from "../assets/loginbackground.png";
 import {validate} from "../utils/validate";
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword,sendPasswordResetEmail } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword,sendPasswordResetEmail, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
 
 
 const Login = () => {
@@ -17,6 +18,7 @@ const Login = () => {
   const name=useRef()
   const email=useRef()
   const password=useRef()
+  const navigate=useNavigate()
 
   const resetPassword=()=>{
     const auth = getAuth();
@@ -43,6 +45,15 @@ const Login = () => {
   .then((userCredential) => {
     // Signed up 
     const user = userCredential.user;
+
+    updateProfile(auth.currentUser, {
+      displayName: name.current.value, photoURL: "https://lh3.googleusercontent.com/-nNoeKFKlEGE/AAAAAAAAAAI/AAAAAAAAAAA/ALKGfknFf6fM8scsyD6d4HXynUT50ZQuOA/photo.jpg?sz=46"
+    }).then(() => {
+      
+    }).catch((error) => {
+      
+    });
+    navigate('/browse')
     // ...
   })
   .catch((error) => {
@@ -57,6 +68,7 @@ signInWithEmailAndPassword(auth, email.current.value, password.current.value)
   .then((userCredential) => {
     
     const user = userCredential.user;
+    navigate('/browse')
     
 
   })
