@@ -13,7 +13,7 @@ const MainContainer = () => {
 
 
   return (
-    <div>
+    <div className='h-screen'>
       <VideoTitle title={original_title} desc={overview}  />
       <VideoBackground movieId={id} />
     </div>
