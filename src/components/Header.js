@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import logo from '../assets/Netflix_Logo_RGB.png'
 import { auth } from '../utils/firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
@@ -15,14 +15,14 @@ const Header = () => {
  const user=useSelector(store=>(store.user))
   const handleSignout = () => {
     signOut(auth).then(() => {
-      navigate('/')
+      
     }).catch((error) => {
-      // An error happened.
+      
     });
   }
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe=onAuthStateChanged(auth, (user) => {
       if (user) {
         
         const {uid,email,photoURL,displayName} = user;
@@ -33,6 +33,10 @@ const Header = () => {
         navigate('/')
       }
     })
+
+    return() => unsubscribe(
+      
+    )
   }, [])
 
   return (
