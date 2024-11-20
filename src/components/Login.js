@@ -143,7 +143,41 @@ const Login = () => {
           {SignedIn ? "Sign In" : "Sign Up"}
         </button>
         {errormsg && <p className="text-red-500">{errormsg}</p>}
+
+        <div>
+          <input type="checkbox" name="remember" id="" />
+          <label htmlFor="remember"> Remember Me</label>
+        </div>
+        {SignedIn ? (
+          <p>
+            New to Netflix?{" "}
+            <span
+              className="text-blue-500 my-2 cursor-pointer "
+              onClick={ToggleSignIn}
+            >
+              Sign Up
+            </span>{" "}
+            Now
+          </p>
+        ) : (
+          <p>
+            Already a member?{" "}
+            <span
+              className="text-blue-500 my-2 cursor-pointer "
+              onClick={ToggleSignIn}
+            >
+              Sign In
+            </span>{" "}
+            Now
+          </p>
+        )}
+        {SignedIn && (
+          <p className="text-blue-500 cursor-pointer" onClick={resetPassword}>
+            Forgot Password?
+          </p>
+        )}
       </form>
+      
     </div>
   );
 };
