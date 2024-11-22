@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Header from './Header'
 
 import useNowPlayingMovies from '../hooks/useNowPlayingMovies';
@@ -7,6 +7,7 @@ import SecondaryContainer from './SecondaryContainer';
 import usePopularMovies from '../hooks/usePopularMovie';
 import useUpcomingMovies from '../hooks/useUpcomingMovies';
 import useTopRatedMovies from '../hooks/useTopRatedMovies';
+import Footer from './Footer';
 
 const Browse = () => {
 
@@ -19,6 +20,7 @@ const Browse = () => {
       <Header/>
       <MainContainer/>
       <SecondaryContainer/>
+     
     </div>
   )
 }
