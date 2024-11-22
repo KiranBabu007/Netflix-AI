@@ -3,23 +3,22 @@ import { useDispatch } from "react-redux";
 import { addNowPlayingMovies } from "../utils/moviesSlice";
 import { API_OPTIONS } from '../utils/constants';
 
-const usePopularMovies = ()=>{
+const useUpcomingMovies = ()=>{
 
     const dispatch = useDispatch();
-    const getPopularMovies = async () =>{
+    const getUpcomingMovies = async () =>{
     
     const data=await fetch('https://api.themoviedb.org/3/movie/popular?page=1',API_OPTIONS);
 
     const json=await data.json();
 
-    dispatch(addNowPlayingMovies(json.results));
+    dispatch(addUpComingMovies(json.results));
     
   }
 
   useEffect(() => {
-    getPopularMovies();
+    getUpcomingMovies();
   },[])
 }
 
-export default usePopularMovies;
-
+export default useUpcomingMovies;
