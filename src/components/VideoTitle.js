@@ -3,7 +3,7 @@ import play from "../assets/play.svg";
 
 const VideoTitle = ({ title, desc }) => {
   return (
-    <div className="absolute pt-[20%] w-screen h-screen px-12 text-white bg-gradient-to-r from-black">
+    <div className="absolute pt-[18%] w-screen h-screen px-12 text-white bg-gradient-to-r from-black">
       <h1 className="text-6xl font-bold">{title}</h1>
       <p className="py-6 text-lg w-2/6">{desc}</p>
       <div className="flex">
