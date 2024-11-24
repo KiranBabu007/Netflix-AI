@@ -5,17 +5,23 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
+import { toggleSearch } from "../utils/gptSlice";
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const user = useSelector((store) => store.user);
+  const gpt = useSelector((store) => store.gpt);
   const handleSignout = () => {
     signOut(auth)
       .then(() => {})
       .catch((error) => {});
   };
+
+  const handleToggle = () => {
+    dispatch(toggleSearch(gpt.showGPTSearch));
+  }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -44,13 +50,12 @@ const Header = () => {
       <img className="w-48" src={logo} alt="logo" />
       {user && (
         <div className="flex p-2 mt-4">
-          <button className="pr-4 -mt-4">
+          <button onClick={handleToggle} className="pr-4 -mt-4">
             <a
-              className="group relative inline-block text-sm font-medium text-white focus:outline-none focus:ring"
-              
+              className="group relative inline-block text-sm font-medium text-white focus:outline-none focus:ring" 
             >
               <span className="absolute  rounded-md inset-0 border border-red-600 group-active:border-red-500"></span>
-              <span className=" rounded-md block border font-mono font-bold border-red-600 bg-red-600 px-6 py-2 transition-transform active:border-red-500 active:bg-red-500 group-hover:-translate-x-1 group-hover:-translate-y-1">
+              <span className="rounded-md block border font-mono font-bold border-red-600 bg-red-600 px-6 py-2 transition-transform active:border-red-500 active:bg-red-500 group-hover:-translate-x-1 group-hover:-translate-y-1">
                 GPT Search
               </span>
             </a>
