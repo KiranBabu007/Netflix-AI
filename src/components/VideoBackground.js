@@ -9,7 +9,7 @@ const VideoBackground = ({ movieId }) => {
   useMovieTrailer(movieId);
 
   return (
-    <div className="relative w-screen h-screen z-0">
+    <div className="relative w-screen h-screen -z-10">
   {/* Video Background */}
   <div className="absolute inset-0 z-10 bg-gradient-to-r from-black  overflow-hidden ">
     <iframe

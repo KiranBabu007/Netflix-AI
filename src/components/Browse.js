@@ -6,6 +6,7 @@ import useNowPlayingMovies from '../hooks/useNowPlayingMovies';
 import usePopularMovies from '../hooks/usePopularMovie';
 import useUpcomingMovies from '../hooks/useUpcomingMovies';
 import useTopRatedMovies from '../hooks/useTopRatedMovies';
+import GptSearch from './GptSearch';
 
 
 const Browse = () => {
@@ -17,6 +18,7 @@ const Browse = () => {
   return (
     <div>
       <Header />
+      <GptSearch />
       <div className="hidden md:block">
         <MainContainer />
       </div>

@@ -62,7 +62,7 @@ const Login = () => {
           updateProfile(auth.currentUser, {
             displayName: name.current.value,
             photoURL:
-              "https://lh3.googleusercontent.com/-nNoeKFKlEGE/AAAAAAAAAAI/AAAAAAAAAAA/ALKGfknFf6fM8scsyD6d4HXynUT50ZQuOA/photo.jpg?sz=46",
+              "https://occ-0-6155-3663.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABdFu41cMXRWNK1EkDj_yH1bxeh9a0udswBpkyBNBYFsgcCEANkojvc63RsB56mXTPWhSqhDnWfJQOH9V7BymHd5Jj8XGwUJ-eQ.png?r=e6e",
           })
             .then(() => {
               const uid = user.uid;
