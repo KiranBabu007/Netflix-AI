@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import { toggleSearch } from "../utils/gptSlice";
 
+
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -56,7 +57,7 @@ const Header = () => {
             >
               <span className="absolute  rounded-md inset-0 border border-red-600 group-active:border-red-500"></span>
               <span className="rounded-md block border font-mono font-bold border-red-600 bg-red-600 px-6 py-2 transition-transform active:border-red-500 active:bg-red-500 group-hover:-translate-x-1 group-hover:-translate-y-1">
-                GPT Search
+                {gpt.showGPTSearch ? "Home" : "Search"}
               </span>
             </a>
           </button>
