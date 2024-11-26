@@ -25,22 +25,25 @@ const GptSearchbar = () => {
 
   const handleGPTSearch = async () => {
     const prompt = `
-  You are an AI assistant for a Netflix clone. A user will provide a query containing details like genre, language, and the number of movies they want. 
+  You are an expert AI assistant for a Netflix-like platform. A user will provide a query containing details such as genre, language, and the number of movie recommendations they want.
 
-  Your task is to extract the movie names based on the query and return only the movie names in a comma-separated format. Be an expert a recommend crystal clean picks at least 5 picks.
+  **Task**: Extract the relevant movie names based on the user query and return them as a **comma-separated list**. Ensure the recommendations are high-quality, relevant, and contain at least five options. If no specific genre, language, or count is mentioned, default to suggesting five popular movies across all genres and languages.
 
-  Example input:
-  "Give me 5 comedy Hindi movies."
+  **Example Input**:
+  "Suggest 5 comedy Hindi movies."
 
-  Expected output:
+  **Expected Output**:
   Andaz Apna Apna, Hera Pheri, Munna Bhai MBBS, Chupke Chupke, Golmaal
 
-  If the query doesn't specify the genre, language, or number, assume the user wants 5 popular movies of any genre and language.
+  **Important Notes**:
+  - Only output the movie names in a comma-separated format with no additional text.
+  - Provide tailored, highly-rated options based on the details provided in the query.
 
   User query: "${searchText.current.value}"
 `;
+
     const { text } = await generateText({
-      model: groq("gemma2-9b-it"),
+      model: groq("llama-3.1-70b-versatile"),
       prompt: prompt,
     });
     const GptMovies = text.split(",").map((movie) => movie.trim());
