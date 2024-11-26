@@ -35,9 +35,7 @@ const handleGPTSearch = async () => {
   });
   const GptMovies = text.split(',').map((movie) => movie.trim());
   console.log(GptMovies);
-  
 }
-
   return (
     <div className='flex p-[8%] justify-center'>
       <form className=' w-1/2 bg-black grid grid-cols-12 rounded-lg ' onSubmit={(e)=> e.preventDefault() }>
