@@ -3,7 +3,7 @@ import { generateText } from "ai";
 
 import { createGroq } from "@ai-sdk/groq";
 import { API_OPTIONS } from "../utils/constants";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { addGptMovies } from "../utils/gptSlice";
 
 const GptSearchbar = () => {
@@ -50,8 +50,6 @@ const GptSearchbar = () => {
     const tmdbMovies = await Promise.all(movieArray)
 
     dispatch(addGptMovies({ movieNames: GptMovies, movieResults: tmdbMovies }));
-
-    
 
   }
   return (
