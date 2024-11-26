@@ -3,7 +3,7 @@ import { generateText } from "ai";
 
 import { createGroq } from "@ai-sdk/groq";
 import { API_OPTIONS } from "../utils/constants";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addGptMovies } from "../utils/gptSlice";
 
 const GptSearchbar = () => {
