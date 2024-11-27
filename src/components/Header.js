@@ -39,6 +39,7 @@ const Header = () => {
         navigate("/browse");
       } else {
         dispatch(removeUser());
+        dispatch(toggleSearch());
         navigate("/");
       }
     });
