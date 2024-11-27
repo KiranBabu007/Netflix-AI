@@ -66,20 +66,20 @@ const { text } = await generateText({
 
   }
   return (
-    <div className="flex p-[8%] justify-center">
+    <div className="pt-[40%] md:pt-0 flex p-2 md:p-[4%] lg:p-[8%] justify-center">
       <form
-        className=" w-1/2 bg-black grid grid-cols-12 rounded-lg "
+        className="w-[90%] md:w-[70%] lg:w-1/2 bg-black grid grid-cols-12 rounded-lg"
         onSubmit={(e) => e.preventDefault()}
       >
         <input
           ref={searchText}
-          className="p-4 m-4 col-span-9 rounded"
+          className="p-2 md:p-4 m-2 md:m-4 col-span-12 md:col-span-9 rounded"
           type="text"
           placeholder="What would you like to watch today?"
         />
         <button
           onClick={handleGPTSearch}
-          className="col-span-3 py-2 m-4 px-4 text-white rounded-lg bg-red-600 hover:bg-red-700"
+          className="col-span-12 md:col-span-3 py-2 mx-2 mb-2 md:m-4 px-4 text-white rounded-lg bg-red-700 hover:bg-red-800"
         >
           Search
         </button>

@@ -4,7 +4,7 @@ import { addNowPlayingMovies } from "../utils/moviesSlice";
 import { API_OPTIONS } from '../utils/constants';
 
 const useNowPlayingMovies = ()=>{
-
+    const nowplayingmovies = useSelector((state) => state.movies.nowPlayingMovies);
     const dispatch = useDispatch();
     const getNowPlayingMovies = async () =>{
     
