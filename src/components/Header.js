@@ -62,13 +62,13 @@ const Header = () => {
             </a>
           </button>
       {user && (
-        <div className="flex p-2 ml-16 md:ml-0 my-4 justify-between">
+        <div className="flex p-4 ml-16 md:ml-0 my-4 justify-between">
           <img
             className="w-12 h-12 rounded"
             src={user.photoURL}
             alt="profile_pic"
           />
-          <div className="p-2-mt-2 m-2 font-mono font-bold text-white ">
+          <div className="p-4-mt-2 m-2 w-10 font-mono font-bold text-white ">
             <p className="text-ellipsis">{user.displayName}</p>
             <button onClick={handleSignout} className="text-red-400">
               Sign Out
