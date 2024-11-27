@@ -68,7 +68,7 @@ const { text } = await generateText({
   return (
     <div className="pt-[40%] md:pt-0 flex p-2 md:p-[4%] lg:p-[8%] justify-center">
       <form
-        className="w-[90%] md:w-[70%] lg:w-1/2 bg-black grid grid-cols-12 rounded-lg"
+        className="w-[90%] md:w-[70%] lg:w-1/2 bg-black grid grid-cols-12 rounded-lg bg-opacity-50"
         onSubmit={(e) => e.preventDefault()}
       >
         <input
@@ -79,7 +79,7 @@ const { text } = await generateText({
         />
         <button
           onClick={handleGPTSearch}
-          className="col-span-12 md:col-span-3 py-2 mx-2 mb-2 md:m-4 px-4 text-white rounded-lg bg-red-700 hover:bg-red-800"
+          className="col-span-12 font-bold md:col-span-3 py-2 mx-2 mb-2 md:m-4 px-4 text-white rounded-lg bg-red-600 hover:bg-red-700"
         >
           Search
         </button>

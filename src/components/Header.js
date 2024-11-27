@@ -55,14 +55,14 @@ const Header = () => {
         
 
         {user && (
-          <div className="flex items-center space-x-4 ml-4">
+          <div className="flex items-center space-x-4 ml-4 mt-6 md:mt-0">
             <button
           className="relative group cursor-pointer ml-auto"
           onClick={handleToggle}
         >
           <a className="relative inline-block text-white">
             <span className="absolute rounded-md inset-0 border border-red-600 group-active:border-red-500"></span>
-            <span className="rounded-md text-sm md:text-md border font-mono font-bold border-red-600 bg-red-600 px-8 md:px-6 py-2 transition-transform active:border-red-500 active:bg-red-500 group-hover:-translate-x-1 group-hover:-translate-y-1 flex items-center gap-2">
+            <span className="rounded-md text-sm md:text-md border  font-mono font-bold border-red-600 bg-red-600 px-8 md:px-6 py-2 transition-transform active:border-red-500 active:bg-red-500 group-hover:-translate-x-1 group-hover:-translate-y-1 flex items-center gap-2">
               <FontAwesomeIcon icon={gpt.showGPTSearch ? faHome : faMagnifyingGlass} />
               {gpt.showGPTSearch ? "Home Page" : "AI Search"}
             </span>
