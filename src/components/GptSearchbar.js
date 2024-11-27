@@ -3,7 +3,9 @@ import { generateText } from "ai";
 import { API_OPTIONS } from "../utils/constants";
 import { useDispatch} from "react-redux";
 import { addGptMovies } from "../utils/gptSlice";
- import { createGoogleGenerativeAI } from '@ai-sdk/google';
+ import { createGroq } from '@ai-sdk/groq';
+
+
 
 const GptSearchbar = () => {
   const searchText = useRef(null);
@@ -11,8 +13,10 @@ const GptSearchbar = () => {
 
  
 
-  const google = createGoogleGenerativeAI({
-    apiKey: process.env.REACT_APP_GOOGLE_API_KEY,dangerouslyAllowBrowser: true
+
+
+  const groq = createGroq({
+    apiKey: process.env.REACT_APP_GROQ_API_KEY,dangerouslyAllowBrowser: true
   });
 
   const searchMovieTMDB = async (movie) => {
@@ -25,35 +29,23 @@ const GptSearchbar = () => {
 
   const handleGPTSearch = async () => {
     const prompt = `
-  You are an expert AI assistant for a Netflix-like platform. A user will provide a query regarding anything related to movie.
+  Task: Extract relevant movie names based on the user query and return them as a comma-separated list. Provide at least five high-quality options. Default to five popular movies across all genres if no specific criteria are mentioned.
 
-  **Task**: Extract the relevant movie names based on the user query and return them as a **comma-separated list**. Ensure the recommendations are high-quality, relevant, and contain at least five options. If no specific genre, language, or count is mentioned, default to suggesting five popular movies across all genres and languages.
+Rules:
 
-  **Example Input**:
-  "Suggest 5 comedy Hindi movies."
+Output only movie names in a comma-separated format, no extra text.
+Include at least five names.Striclty follow the format and output only movie names.
+Example:
+//
+Input: "Suggest 5 comedy Hindi movies."
+Output: Andaz Apna Apna, Hera Pheri, Munna Bhai MBBS, Chupke Chupke, Golmaal
+//
 
-  **Expected Output**:
-  Andaz Apna Apna, Hera Pheri, Munna Bhai MBBS, Chupke Chupke, Golmaal
-
-  **Example Input**:
-  "Malayalam Horror"
-
-  **Expected Output**:
-  Ezra,In Ghost House Inn,Pretha,Anandabhadram,Manichitrathazhu
-
-  **Important Notes**:
-  - Only output the movie names in a comma-separated format with no additional text.
-  - No other information should be included in the output. regarding context or the user query.
-  - The output should be a list of movie names separated by commas.
-  - The output should contain at least five movie names.
-  - The output shouldnt have introduction or conclusion text.
-  
-
-  User query: "${searchText.current.value}"
+Query: "${searchText.current.value}
 `;
 
 const { text } = await generateText({
-  model: google('gemini-1.5-pro-latest'),
+  model: groq('llama-3.1-8b-instant'),
   prompt: prompt,
 });
     const GptMovies = text.split(",").map((movie) => movie.trim());

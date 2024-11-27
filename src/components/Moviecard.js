@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 const Moviecard = ({ movieData }) => {
-  if (!movieData) return null;
+  if (!movieData || !movieData.poster_path) return null;
   
   const { 
     poster_path, 
@@ -13,6 +13,8 @@ const Moviecard = ({ movieData }) => {
     release_date,
     overview 
   } = movieData;
+
+  console.log(movieData)
 
   return (
     <div className='w-36 md:w-44 relative group cursor-pointer'>
@@ -30,7 +32,9 @@ const Moviecard = ({ movieData }) => {
             
             <div className='flex items-center gap-2 mb-2'>
               <FontAwesomeIcon icon={faStar} className='text-yellow-400' />
-              <span className='text-sm'>{vote_average.toFixed(1)}</span>
+              <span className='text-sm'>
+                {vote_average ? vote_average.toFixed(1) : '-'}
+              </span>
               <span className='text-sm'>
                 ({new Date(release_date).getFullYear()})
               </span>
