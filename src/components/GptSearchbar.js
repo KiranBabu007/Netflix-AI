@@ -75,7 +75,7 @@ const { text } = await generateText({
           ref={searchText}
           className="p-2 md:p-4 m-2 md:m-4 col-span-12 md:col-span-9 rounded"
           type="text"
-          placeholder="What would you like to watch today?"
+          placeholder="Describe what you like to watch today?"
         />
         <button
           onClick={handleGPTSearch}
