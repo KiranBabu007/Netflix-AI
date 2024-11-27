@@ -31,32 +31,41 @@ const GptSearchbar = () => {
     const prompt = `
   Task: Extract relevant movie names based on the user query and return them as a comma-separated list. Provide at least five high-quality options. Default to five popular movies across all genres if no specific criteria are mentioned.
 
-Rules:
+  Rules:
 
-Output only movie names in a comma-separated format, no extra text.
-Include at least five names.Striclty follow the format and output only movie names.
-Example:
-//
-Input: "Suggest 5 comedy Hindi movies."
-Output: Andaz Apna Apna, Hera Pheri, Munna Bhai MBBS, Chupke Chupke, Golmaal
-//
+  Output only movie names in a comma-separated format, no extra text.
+  Include at least five names. Strictly follow the format and output only movie names.
+  Example:
+  //
+  Input: "Suggest 5 comedy Hindi movies."
+  Output: Andaz Apna Apna, Hera Pheri, Munna Bhai MBBS, Chupke Chupke, Golmaal
+  //
 
-Query: "${searchText.current.value}
-`;
+  Query: "${searchText.current.value}"
+  `;
 
-const { text } = await generateText({
-  model: groq('llama-3.1-8b-instant'),
-  prompt: prompt,
-});
-    const GptMovies = text.split(",").map((movie) => movie.trim());
+    const { text } = await generateText({
+      model: groq('llama-3.1-8b-instant'),
+      prompt: prompt,
+    });
+
     
-    const movieArray = GptMovies.map((movie)=>searchMovieTMDB(movie))
+    const cleanedText = text
+      .split('\n')
+      .map(line => line.trim())
+      .filter(line => line && !line.startsWith('//'))
+      .pop()
+      .replace(/(Output:|Here are|Suggested movies:|Movies:)/gi, '')
+      .trim();
 
-    const tmdbMovies = await Promise.all(movieArray)
-
-    dispatch(addGptMovies({ movieNames: GptMovies, movieResults: tmdbMovies }));
-
+    const movieNames = cleanedText.split(',').map(movie => movie.trim());
+    
+    const movieArray = movieNames.map((movie) => searchMovieTMDB(movie));
+    const tmdbMovies = await Promise.all(movieArray);
+    
+    dispatch(addGptMovies({ movieNames: movieNames, movieResults: tmdbMovies }));
   }
+
   return (
     <div className="pt-[40%] md:pt-0 flex p-2 md:p-[4%] lg:p-[8%] justify-center">
       <form
