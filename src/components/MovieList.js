@@ -5,7 +5,7 @@ const MovieList = ({ title, movies }) => {
   if (!movies) return null
   return (
     <div className='px-6'>
-      <h1 className='text-4xl md:text-4xl py-4 md:py-6 text-white font-light font-bebas tracking-wide '>
+      <h1 className='text-4xl md:text-5xl py-4 md:py-6 text-white font-light font-bebas tracking-wide '>
         {title}
       </h1>
       <div className='relative pb-4'>
