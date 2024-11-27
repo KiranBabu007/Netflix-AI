@@ -17,14 +17,13 @@ const Moviecard = ({ movieData }) => {
   return (
     <div className='w-36 md:w-44 relative group cursor-pointer'>
       <div className='relative overflow-hidden rounded-lg'>
-        {/* Movie Poster */}
+        
         <img 
           src={IMG_CDN + poster_path} 
           alt={title}
           className='w-full transition-transform duration-300 group-hover:scale-110'
         />
         
-        {/* Overlay on Hover */}
         <div className='absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
           <div className='absolute bottom-0 p-4 text-white'>
             <h2 className='text-lg font-bold mb-1 line-clamp-1'>{title}</h2>
