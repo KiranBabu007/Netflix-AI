@@ -25,14 +25,13 @@ const Login = () => {
   const name = useRef();
   const email = useRef();
   const password = useRef();
-  
   const dispatch = useDispatch();
 
   const resetPassword = () => {
     const auth = getAuth();
     sendPasswordResetEmail(auth, email.current.value)
       .then(() => {
-        // Password reset email sent!
+        
         alert("Password reset email sent!");
       })
       .catch((error) => {
@@ -56,7 +55,7 @@ const Login = () => {
         password.current.value
       )
         .then((userCredential) => {
-          // Signed up
+          
           const user = userCredential.user;
 
           updateProfile(auth.currentUser, {

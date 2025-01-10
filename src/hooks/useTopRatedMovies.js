@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addNowPlayingMovies, addTopRatedMovies, addUpcomingMovies } from "../utils/moviesSlice";
+import {addTopRatedMovies } from "../utils/moviesSlice";
 import { API_OPTIONS } from '../utils/constants';
 
 const useTopRatedMovies = ()=>{

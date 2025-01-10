@@ -4,7 +4,7 @@ import Moviecard from './Moviecard'
 const MovieList = ({ title, movies }) => {
   if (!movies) return null
   return (
-    <div className='px-6'>
+    <div className='px-6 mt-8'>
       <h1 className='text-4xl md:text-5xl py-4 md:py-6 text-white font-light font-bebas tracking-wide '>
         {title}
       </h1>
